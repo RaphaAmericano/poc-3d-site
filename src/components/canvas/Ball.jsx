@@ -27,6 +27,7 @@ const Ball = (props) => {
         <Decal 
         position={[0, 0, 1]} 
         rotation={[2 * Math.PI, 0, 6.25 ]}
+        scale={1}
         flatShading
         map={decal} />
       </mesh>
@@ -35,13 +36,18 @@ const Ball = (props) => {
 };
 
 const BallCanvas = ({ icon }) => {
-  <Canvas frameloop="demand" gl={{ preserveDrawingBuffer: true }}>
-    <Suspense fallback={<CanvasLoader />}>
-      <OrbitControls enableZoom={false} />
-      <Ball imgUrl={icon} />
-    </Suspense>
-    <Preload all />
-  </Canvas>;
+  return (
+    <Canvas 
+      frameloop="demand"
+      dpr={[1,2]} 
+      gl={{ preserveDrawingBuffer: true }}>
+      <Suspense fallback={<CanvasLoader />}>
+        <OrbitControls enableZoom={false} />
+        <Ball imgUrl={icon} />
+      </Suspense>
+      <Preload all />
+    </Canvas>
+  );
 };
 
 export default BallCanvas;
