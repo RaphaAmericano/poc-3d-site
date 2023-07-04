@@ -2,9 +2,9 @@ name: CI/CD
 
 on:
   push:
-    branches: [ master ]
+    branches: [ deploy ]
   pull_request:
-    branches: [ master ]
+    branches: [ deploy ]
 jobs:
   build:
     name: Build
@@ -38,7 +38,7 @@ jobs:
     name: Deploy
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/deploy'
     
     steps:
     - name: Download artifact
